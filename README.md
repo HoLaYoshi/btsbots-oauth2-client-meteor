@@ -7,28 +7,23 @@ package will allow your site to authenticate users on another meteor application
 ### Configuration
 
 1. register a new client from https://btsbots.com.
-
-1.1 import account to https://btsbots.com with your BTS's active private key.
-
-1.2 login.
-
-1.3 register a new client. open the develop console of your browser, run command: 
+  1. import account to https://btsbots.com with your BTS's active private key.
+  2. login.
+  3. register a new client. open the develop console of your browser, run command: 
 ```
 > addclient("https://btsbots.com:8000/_oauth/BTSBotsOAuth", 'abcdefg')
 ```
-the first parameter is the redirect URL, the second parameter is the secret for your client.
-your client's ID will output after the command. you'll need the ID and secret in the next step. suppose it's 123456
+  the first parameter is the redirect URL, the second parameter is the secret for your client.
+  your client's ID will output after the command. you'll need the ID and secret in the next step. suppose it's 123456
 
 2. add Meteor BTSBots OAuth2 to your web site.
-
-2.1 add this package to your meteor project
+  1. add this package to your meteor project
 ```
 $ mkdir packages && cd packages
 $ git clone https://github.com/pch957/btsbots-oauth2-client-meteor
 $ meteor add accounts-ui prime8consulting:meteor-oauth2-client
 ```
-
-2.2 configure OAuth2 with the client ID and secret. open mongo client, and use the app database.run command:
+  2. configure OAuth2 with the client ID and secret. open mongo client, and use the app database.run command:
 ```
 meteor:PRIMARY> db.meteor_accounts_loginServiceConfiguration.insert({"service" : "BTSBotsOAuth", "clientId" : "123456", "secret" : "abcdefg", "baseUrl" : "https://btsbots.com", "loginUrl" : "https://btsbots.com/oauthlogin", "loginStyle" : "popup"})
 ```
